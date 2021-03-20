@@ -179,7 +179,7 @@ public class HTTPRequest {
     public void saveFile(File parent) throws IOException {
         InputStream inputStream = socket.getInputStream();
         for (String boundary : boundaries) {
-            //读取第一行 f1orm data 的开始区间
+            //读取第一行 form data 的开始区间
             String first = getLine(inputStream);
             if (first == null) {
                 break;

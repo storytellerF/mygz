@@ -25,3 +25,7 @@ sites:
 ## 注意
 
 现在支持的功能较少，不支持php等动态语言
+
+使用idea+gradle开发，但是编译时应该选择idea
+
+位置File | Settings | Build, Execution, Deployment | Build Tools | Gradle

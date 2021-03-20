@@ -13,33 +13,6 @@ public class HTTPResponse {
         this.socket = socket;
     }
 
-    public void responseImage(InputStream inputStream, long length) {
-//        Log.i(TAG, "transferImage: length:" + length);
-        ByteBuffer buffer = ByteBuffer.allocate((int) length + 1000);
-        String header = "HTTP/1.1 200 OK\r\n" +
-                "Content-type: image/x-icon\r\n" +
-                "Content-length:" + length + "\r\n" +
-                "\r\n";
-        buffer.put(header.getBytes());
-        try {
-            int len;
-            byte[] bytes = new byte[1024];
-            while ((len = inputStream.read(bytes)) != -1) {
-                buffer.put(bytes, 0, len);
-            }
-            socket.getOutputStream().write(buffer.array(), 0, buffer.position());
-        } catch (IOException e) {
-            e.printStackTrace();
-            responseImageNotFound();
-        } finally {
-            buffer.clear();
-            try {
-                inputStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
     public void responseNotFound()  {
         try {
             socket.getOutputStream().write(("HTTP/1.1 404 Not Found\r\n").getBytes());
@@ -78,17 +51,8 @@ public class HTTPResponse {
         }
 
     }
-    public void responseEmpty() {
-        String header = "HTTP/1.1 200 OK\r\n" +
-                "\r\n";
-        try {
-            socket.getOutputStream().write(header.getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    public void responseDownloadFile(File file) {
 
+    public void responseDownloadFile(File file) {
         String header = "HTTP/1.1 200 OK\r\n" +
                 "Content-type:application/octet-stream\r\n" +
                 "Content-Disposition:attachment;filename=" + file.getName() + "\r\n" +
@@ -133,16 +97,7 @@ public class HTTPResponse {
             e.printStackTrace();
         }
     }
-    private void responseImageNotFound() {
-        String header = "HTTP/1.1 404 OK\r\n" +
-                "Content-type: image/x-icon\r\n" +
-                "\r\n";
-        try {
-            socket.getOutputStream().write(header.getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
     public void responseStringMessage(String message) {
         String httpContent = getHttpContent(message);
         responseHTML(200,"OK",httpContent);

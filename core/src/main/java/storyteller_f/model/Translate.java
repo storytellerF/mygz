@@ -1,4 +1,4 @@
-package com.storyteller_f.model;
+package storyteller_f.model;
 
 public class Translate {
     private String origin;//.php

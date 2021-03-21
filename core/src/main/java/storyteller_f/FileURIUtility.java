@@ -1,4 +1,4 @@
-package com.storyteller_f;
+package storyteller_f;
 
 import java.io.File;
 import java.util.Locale;

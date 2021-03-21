@@ -1,4 +1,4 @@
-package com.storyteller_f;
+package storyteller_f;
 
 import java.util.HashMap;
 

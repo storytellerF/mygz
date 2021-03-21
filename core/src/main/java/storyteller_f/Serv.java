@@ -1,8 +1,8 @@
-package com.storyteller_f;
+package storyteller_f;
 
-import com.storyteller_f.model.Redirect;
-import com.storyteller_f.model.Site;
-import com.storyteller_f.model.Translate;
+import storyteller_f.model.Redirect;
+import storyteller_f.model.Site;
+import storyteller_f.model.Translate;
 
 import java.io.File;
 import java.io.IOException;
@@ -107,7 +107,7 @@ public class Serv extends StoppableThread {
 //                    System.out.println("exits");
                     httpResponse.responseFile(file, FileUtility.getInstance().getMimeType(FileURIUtility.getExtensions(file)));
                 } else {
-                    System.out.println("do not exits");
+                    System.out.println(file+" do not exits");
                     httpResponse.responseHTML(404, "Not Found", "404 Not Found");
                 }
             } catch (IOException e) {

@@ -1,17 +1,16 @@
-package com.storyteller_f;
+package storyteller_f;
 
-import com.storyteller_f.model.Config;
-import com.storyteller_f.model.Redirect;
-import com.storyteller_f.model.Site;
 import org.yaml.snakeyaml.Yaml;
+import storyteller_f.model.Config;
+import storyteller_f.model.Redirect;
+import storyteller_f.model.Site;
 
 import java.io.InputStream;
 import java.util.ArrayList;
 
-public class Main {
+public class Start {
 
-    public static void main(String[] args) {
-        InputStream resource = Main.class.getResourceAsStream("/config.yaml");
+    public void config(InputStream resource) {
         Config config = new Yaml().loadAs(resource, Config.class);
         ArrayList<Site> sites = config.getSites();
         for (Site site : sites) {

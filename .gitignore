@@ -1,3 +1,7 @@
 /build/
 /.gradle/
 /out/production/
+/core/build/
+/core/out/production/classes/storyteller_f/
+/mygz-cmd/out/production/
+/mygz-cmd/build/

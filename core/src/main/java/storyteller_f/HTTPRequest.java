@@ -1,4 +1,4 @@
-package com.storyteller_f;
+package storyteller_f;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,12 +15,12 @@ public class HTTPRequest {
 
     public HTTPRequest(Socket socket) throws IOException {
         header = getRequest(socket);
-        String requestType = getRequestType(header);
+//        String requestType = getRequestType(header);
         String path = getRequestPath(header);
         encodedPath = URLDecoder.decode(path, StandardCharsets.UTF_8.toString());
-        long contentLength = getContentLength(header);
-        String contentType = getContentType(header);
-        boolean isMultipart = isMultipart(contentType);
+//        long contentLength = getContentLength(header);
+//        String contentType = getContentType(header);
+//        boolean isMultipart = isMultipart(contentType);
 //        System.out.println("com.storyteller_f.HTTPRequest: type:" + requestType + " path:" + path + " encodedPath:" + encodedPath + " length:" + contentLength + " type:" + contentType + " multi:" + isMultipart);
 //        if (isMultipart) {
 //            String[] boundaries = getBoundaries(contentType);

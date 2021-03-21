@@ -7,6 +7,7 @@
 ```yaml
 sites:
   -
+    name: static
     addr: localhost
     port: 8089
     dir: E:\test server\static
@@ -21,6 +22,8 @@ sites:
         to: "index.html"
 
 ```
+
+使用ctrl+c 关闭
 
 ## 注意
 

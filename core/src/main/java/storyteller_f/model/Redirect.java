@@ -1,4 +1,4 @@
-package com.storyteller_f.model;
+package storyteller_f.model;
 
 import java.util.ArrayList;
 

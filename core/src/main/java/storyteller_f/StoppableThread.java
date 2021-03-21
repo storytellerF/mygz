@@ -1,4 +1,4 @@
-package com.storyteller_f;
+package storyteller_f;
 
 public abstract class StoppableThread extends Thread {
     public boolean stopByNext = false;

@@ -1,2 +1,4 @@
 rootProject.name = 'mygz'
+include 'core'
+include 'mygz-cmd'
 

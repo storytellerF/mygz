@@ -21,7 +21,7 @@ public class HTTPRequest {
         long contentLength = getContentLength(header);
         String contentType = getContentType(header);
         boolean isMultipart = isMultipart(contentType);
-        System.out.println("com.storyteller_f.HTTPRequest: type:" + requestType + " path:" + path + " encodedPath:" + encodedPath + " length:" + contentLength + " type:" + contentType + " multi:" + isMultipart);
+//        System.out.println("com.storyteller_f.HTTPRequest: type:" + requestType + " path:" + path + " encodedPath:" + encodedPath + " length:" + contentLength + " type:" + contentType + " multi:" + isMultipart);
 //        if (isMultipart) {
 //            String[] boundaries = getBoundaries(contentType);
 //        }
@@ -79,7 +79,7 @@ public class HTTPRequest {
     private String getRequest(Socket socket) throws IOException {
         InputStream inputStream = socket.getInputStream();
         socket.setSoTimeout(5000);
-        byte[] bytes = new byte[1024];
+        byte[] bytes = new byte[2048];
         byte[] stop = new byte[4];
         stop[0] = '\r';
         stop[1] = '\n';

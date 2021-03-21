@@ -52,8 +52,8 @@ public class Serv extends StoppableThread {
     }
 
     private boolean redirectWhether(String encodedPath, Redirect redirect) {
-        System.out.println(encodedPath);
-        System.out.println(redirect);
+//        System.out.println(encodedPath);
+//        System.out.println(redirect);
         String include = redirect.getInclude();
         ArrayList<String> exclude = redirect.getExclude();
         for (String s : exclude) {
@@ -88,7 +88,7 @@ public class Serv extends StoppableThread {
                     if (stopByNext) return;
                     if (redirectWhether(encodedPath, redirect)) {
                         encodedPath = redirect.getTo();
-                        System.out.println("redirect to:" + redirect.getTo());
+//                        System.out.println("redirect to:" + redirect.getTo());
                         break;
                     }
                 }
@@ -101,10 +101,10 @@ public class Serv extends StoppableThread {
                     }
                 }
                 File file = new File(site.getDir(), encodedPath);
-                System.out.println(file.getAbsolutePath());
+//                System.out.println(file.getAbsolutePath());
                 if (stopByNext) return;
                 if (file.exists()) {
-                    System.out.println("exits");
+//                    System.out.println("exits");
                     httpResponse.responseFile(file, FileUtility.getInstance().getMimeType(FileURIUtility.getExtensions(file)));
                 } else {
                     System.out.println("do not exits");

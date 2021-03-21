@@ -13,7 +13,18 @@ public class HTTPResponse {
         this.socket = socket;
     }
 
-    public void responseNotFound()  {
+    public static String getHttpContent(String message) {
+        return "<!doctype html>\r\n" +
+                "<html\r\n>" +
+                "<head>\r\n" +
+                "</head>\r\n" +
+                "<body>\r\n" +
+                message +
+                "</body>\r\n" +
+                "</html>\r\n";
+    }
+
+    public void responseNotFound() {
         try {
             socket.getOutputStream().write(("HTTP/1.1 404 Not Found\r\n").getBytes());
         } catch (IOException e) {
@@ -25,19 +36,21 @@ public class HTTPResponse {
         String header = "HTTP/1.1 200 OK\r\n" +
                 "Content-type:" + mimeType + "\r\n" +
                 "Content-length:" + file.length() + "\r\n" +
-//                    "Last-Modified:" + new Date(lastModified) + "\r\n" +
+                "Last-Modified:" + new Date(file.lastModified()) + "\r\n" +
                 "Connection:keep-alive\r\n" +
                 "\r\n";
-        StringBuilder stringBuilder = new StringBuilder(header);
         byte[] bytes = new byte[1024];
         int len;
         InputStream inputStream1 = null;
         try {
             inputStream1 = new FileInputStream(file);
+            OutputStream outputStream = socket.getOutputStream();
+            outputStream.write(header.getBytes(StandardCharsets.UTF_8));
             while ((len = inputStream1.read(bytes)) != -1) {
-                stringBuilder.append(new String(bytes, 0, len));
+                outputStream.write(bytes,0,len);
             }
-            socket.getOutputStream().write(stringBuilder.toString().getBytes());
+            outputStream.flush();
+            outputStream.close();
         } catch (IOException io) {
             responseStringMessage(io.getMessage());
         } finally {
@@ -85,9 +98,10 @@ public class HTTPResponse {
         }
 
     }
-    public void responseHTML(int status,String message,String html) {
+
+    public void responseHTML(int status, String message, String html) {
         try {
-            socket.getOutputStream().write(("HTTP/1.1 "+status+" "+message+"\r\n" +
+            socket.getOutputStream().write(("HTTP/1.1 " + status + " " + message + "\r\n" +
                     "Date: " + new Date().toString() + "\r\n" +
                     "Content-Type: text/html; charset=UTF-8\r\n" +
                     "Content-Length:" + html.getBytes().length + "\r\n" +
@@ -100,16 +114,6 @@ public class HTTPResponse {
 
     public void responseStringMessage(String message) {
         String httpContent = getHttpContent(message);
-        responseHTML(200,"OK",httpContent);
-    }
-    public static String getHttpContent(String message) {
-        return "<!doctype html>\r\n" +
-                "<html\r\n>" +
-                "<head>\r\n" +
-                "</head>\r\n" +
-                "<body>\r\n" +
-                message +
-                "</body>\r\n" +
-                "</html>\r\n";
+        responseHTML(200, "OK", httpContent);
     }
 }

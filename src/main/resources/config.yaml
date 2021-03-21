@@ -9,6 +9,6 @@ sites:
         current: .html
     redirects:
       -
-        include: "[\\S]*\\.html"# 此功能用于单页
+        include: "[\\S]*\\-top"# 此功能用于单页
         exclude: ["index\\.html"]
         to: "index.html"
